@@ -1,0 +1,33 @@
+///////////////////////////////////////////////////////////////
+////// Computing Example 2.6 (PreAdd) of the paper. 
+///////////////////////////////////////////////////////////////
+load "Ex_2_4.mag";
+
+E2:=7*P3;
+
+r2 := Floor((Degree(E2)-(g-1)-1)/b);
+D2:=E2-r2*B;
+OMD2 := OMDivisor(D2);
+BD2:=SemiReducedBasis(OMD2);
+
+lengthBD2:= [-1*Minimum([Valuation(BD2[i], Pinf[j])+Valuation(D2, Pinf[j]): j in [1..#Pinf]]): i in [1..#BD2]];
+ind:=Index(lengthBD2, Minimum(lengthBD2));
+a2 := BD2[ind];
+Div_a2:=Divisor(a2);
+D2:=D2+Div_a2;
+BD2:=[BD2[i]/a2:  i in [1..#BD2]];
+
+D:=D1+D2;
+
+OMD:=OMDivisor(D);
+BD:=SemiReducedBasis(OMD);
+
+"=======Example 2.6 (PreAdd)";
+
+"After PreAdd, we get a reduced basis of D=D1+D2: ", 
+BD;
+
+
+
+
+

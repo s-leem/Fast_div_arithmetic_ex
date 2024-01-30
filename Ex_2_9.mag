@@ -1,0 +1,52 @@
+///////////////////////////////////////////////////////////////
+////// Computing Example 2.9 (Inverse) of the paper. 
+///////////////////////////////////////////////////////////////
+load "Ex_2_7.mag";
+
+///////In this example, we compute -E1.
+
+//Computing the dual basis for BD1
+M_temp := Matrix(BaseField(F),Degree(F),[Trace(bi*bj): bi in BD1,bj in BD1]);
+M := M_temp^-1;
+L := Rows(M);
+
+basis_com := [];
+
+for elt in L do
+	tmp := &+[elt[i]*BD1[i]:i in [1..Degree(F)]];
+	Append(~basis_com,tmp);
+end for;
+"The dual basis of D1 is", basis_com;
+
+////Computing a B-representation for -Diff
+Diff:=-1*DifferentDivisor(F);
+rdiff := Floor((Degree(Diff)-(g-1)-1)/b);
+Ddiff:=Diff-rdiff*B;
+OMDdiff := OMDivisor(Ddiff);
+BDdiff:=SemiReducedBasis(OMDdiff);
+
+
+lengthBDdiff:= [-1*Minimum([Valuation(BDdiff[i], Pinf[j])+Valuation(Ddiff, Pinf[j]): j in [1..#Pinf]]): i in [1..#BDdiff]];
+ind:=Index(lengthBDdiff, Minimum(lengthBDdiff));
+adiff := BDdiff[ind];
+Div_adiff:=Divisor(adiff);
+Ddiff:=Ddiff+Div_adiff;
+BDdiff:=[BDdiff[i]/adiff:  i in [1..#BDdiff]];
+
+l := Floor((Degree(D1)+(g-1)+b)/b);
+
+BminusD1:=SemiReducedBasis(OMDivisor(-D1)); 
+lengthBminusD1:= [-1*Minimum([Valuation(BminusD1[i], Pinf[j])+Valuation(-D1, Pinf[j]): j in [1..#Pinf]]): i in [1..#BminusD1]];
+ind:=Index(lengthBminusD1, Minimum(lengthBminusD1));
+amD1 := BminusD1[3];
+Div_amD1:=Divisor(amD1);
+DmD1:=-D1+Div_amD1;
+BminusD1:=[BminusD1[i]/amD1:  i in [1..#BminusD1]];
+
+"========Example 2.9";
+"For -E1 = 2P1 - P3, we have the following: ";
+"r =     ", -r-l;
+"d =     ", -Degree(D1)+l*b;
+"I_inf =     ", &*[Ideal(Pinf[i])^(-1*Valuation(InfiniteDivisor(-D1+l*B+Div_amD1), Pinf[i])): i in [1..#Pinf]];
+"B_D1 =     " , BminusD1;
+
