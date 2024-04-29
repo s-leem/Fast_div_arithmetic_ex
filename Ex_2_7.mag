@@ -9,13 +9,14 @@ load "Ex_2_6.mag";
 //// We use the same E1,E2,D1,D2 from the previous examples.
 //// We only need to compute l and B'
 l:=Ceiling((Degree(D1)+Degree(D2)-((g-1)+b))/b);
-BD:=SemiReducedBasis(OMD-OMDivisor(l*B));
+OMD:=OMDivisor(D1)+OMDivisor(D2);
+BD:=SemiReducedBasis(OMD-OMDivisor(l*BB));
 BD:=[BD[i]*2:  i in [1..#BD]];
 ind:=3;
 
 aa := BD[ind];
 Div_aa:=Divisor(aa);
-D:=D-l*B+Div_aa;
+D:=D1+D2-l*BB+Div_aa;
 BD:=[BD[i]/aa:  i in [1..#BD]];
 
 "=======Example 2.7 (Add)";
@@ -25,4 +26,3 @@ BD:=[BD[i]/aa:  i in [1..#BD]];
 "I_inf =     ", &*[Ideal(Pinf[i])^(-1*Valuation(InfiniteDivisor(D), Pinf[i])): i in [1..#Pinf]];
 "A reduced basis of D-lB is :",
 BD;
-
