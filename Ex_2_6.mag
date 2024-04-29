@@ -93,7 +93,6 @@ for i in [1..#BD1] do
 	        end if;
         end while;
 
-        print"NumberRedSteps",NumberRedSteps;
         tmp := Rows(T);
         Sort(~tmp,~p);
         T := Matrix(Reverse(tmp)); 
