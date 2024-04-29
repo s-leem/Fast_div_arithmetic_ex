@@ -24,7 +24,7 @@ end for;
 ////Computing a B-representation for -Diff
 Diff:=-1*DifferentDivisor(F);
 rdiff := Floor((Degree(Diff)-(g-1)-1)/b);
-Ddiff:=Diff-rdiff*B;
+Ddiff:=Diff-rdiff*BB;
 OMDdiff := OMDivisor(Ddiff);
 BDdiff:=SemiReducedBasis(OMDdiff);
 
@@ -50,6 +50,6 @@ BminusD1:=[BminusD1[i]/amD1:  i in [1..#BminusD1]];
 "For -E1 = 2P1 - P3, we have the following: ";
 "r =     ", -r-l;
 "d =     ", -Degree(D1)+l*b;
-"I_inf =     ", &*[Ideal(Pinf[i])^(-1*Valuation(InfiniteDivisor(-D1+l*B+Div_amD1), Pinf[i])): i in [1..#Pinf]];
+"I_inf =     ", &*[Ideal(Pinf[i])^(-1*Valuation(InfiniteDivisor(-D1+l*BB+Div_amD1), Pinf[i])): i in [1..#Pinf]];
 "B_D1 =     " , BminusD1;
 
