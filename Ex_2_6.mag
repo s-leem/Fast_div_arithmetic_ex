@@ -9,7 +9,7 @@ load "Ex_2_4.mag";
 E2:=7*P3;
 
 r2 := Floor((Degree(E2)-(g-1)-1)/b);
-D2:=E2-r2*B; // D2 is P4
+D2:=E2-r2*BB; // D2 is P4
 
 // D:=D1+D2;
 n:=Degree(f);
@@ -47,7 +47,6 @@ for i in [1..#BD1] do
         T:=VerticalJoin(T, newrow);
 
 /// Reduction Algorithm 
-//        NumberRedSteps:=0;
         lc := LCM([Denominator(i):i in Eltseq(T)]);
         k:=BaseRing(K);kt<t>:=PolynomialRing(k);
         n := Ncols(T); m := Rank(T);
@@ -72,7 +71,6 @@ for i in [1..#BD1] do
 	          end for;
 	          Mprime,P:=EchelonForm(M);
 	          s:=Rank(Mprime);
-       	   // NumberRedSteps:=NumberRedSteps+m-s;
 
     	    if s lt m then
     	        Su:=SubmatrixRange(P,s+1,1,m,m);
@@ -108,5 +106,3 @@ for i in [1..#BD1] do
         end if;
     end for;
 end for;
-
-
