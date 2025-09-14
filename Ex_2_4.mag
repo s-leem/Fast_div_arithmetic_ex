@@ -15,9 +15,9 @@ OF := MaximalOrderFinite(F);
 OF_inf := MaximalOrderInfinite(F);
 g:=Genus(F);
 
-////Set the reference divisor B as (t)_oo
-B := PoleDivisor(PrincipalDivisor(F!t));
-b := Degree(B);
+////Set the reference divisor BB as (t)_oo
+BB := PoleDivisor(PrincipalDivisor(F!t));
+b := Degree(BB);
 
 ///Define places
 Pinf:=InfinitePlaces(F);
@@ -34,7 +34,7 @@ P4 := Place(p4);
 E1:=-2*P1+P3;
 
 r := Floor((Degree(E1)-(g-1)-1)/b);
-D1:=E1-r*B;
+D1:=E1-r*BB;
 OMD1 := OMDivisor(D1);
 BD1:=SemiReducedBasis(OMD1);
 
