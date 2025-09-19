@@ -34,14 +34,18 @@ end for;
 temp:=Degree(f)*Cf;
 
 f_simple:=Ay.1^(#Cof-1) + &+[ &+ [Cofx[i][j]*A.1^(temp-(i-1)*Cf+1-j): j in [1..#Cofx[i]]] *Ay.1^(i-1): i in [1..#Cof-1]];
+" ";
 "**** New defining polynomial (simple model): ";
 f_simple;
 
 // Check the ramification indices of infinte places of F with f_simple
 F<theta>:=FunctionField(f_simple);
 OF:=MaximalOrderFinite(F);
+"Basis of OFinf of the new model (simple model):";
+Basis(OFinf);
 inf:=InfinitePlaces(F);
 "Ramification indices of the infinite places of F: ", [RamificationIndex(inf[i]): i in [1..#inf]];
+
 
 
 
